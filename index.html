@@ -22,7 +22,7 @@
     <script>
         // Fonction pour charger les utilisateurs
         function chargerUtilisateurs() {
-            fetch('api.php?action=utilisateurs')
+            fetch('https://web2.private.website.vm.com/api.php?action=utilisateurs')
                 .then(response => response.json())
                 .then(data => {
                     const listeUtilisateurs = document.getElementById('liste-utilisateurs');
@@ -62,7 +62,7 @@
             formData.append('nom', nom);
             formData.append('email', email);
 
-            fetch('api.php', {
+            fetch('https://web2.private.website.vm.com/api.php', {
                 method: 'POST',
                 body: formData
             })
