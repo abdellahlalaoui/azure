@@ -22,7 +22,7 @@
     <script>
         // Fonction pour charger les utilisateurs
         function chargerUtilisateurs() {
-            fetch('http://10.0.3.4/api.php?action=utilisateurs')
+            fetch('https://10.0.3.4/api.php?action=utilisateurs')
                 .then(response => response.json())
                 .then(data => {
                     const listeUtilisateurs = document.getElementById('liste-utilisateurs');
