@@ -22,11 +22,6 @@ jobs:
         with:
           submodules: true
           lfs: false
-      - name: Install Dependencies # Important !
-        run: npm install
-      - name: Build
-        run: npm run build # ou yarn build, ou votre commande de build
-      - name: Get Id Token
         id: idtoken
         uses: actions/github-script@v6
         with:
