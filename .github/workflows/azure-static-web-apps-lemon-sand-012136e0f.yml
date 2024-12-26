@@ -35,6 +35,8 @@ jobs:
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
+        env:
+          SKIP_DEPLOY_ON_MISSING_SECRETS: true
         with:
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
