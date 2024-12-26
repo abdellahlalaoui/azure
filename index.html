@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exemple d'application</title>
+</head>
+<body>
+    <h1>Utilisateurs</h1>
+
+    <form id="form-utilisateur">
+        <label for="nom">Nom :</label><br>
+        <input type="text" id="nom" name="nom"><br><br>
+
+        <label for="email">Email :</label><br>
+        <input type="email" id="email" name="email"><br><br>
+
+        <button type="submit">Ajouter un utilisateur</button>
+    </form>
+
+    <h2>Liste des utilisateurs</h2>
+    <ul id="liste-utilisateurs"></ul>
+
+    <script>
+        // Fonction pour charger les utilisateurs
+        function chargerUtilisateurs() {
+            fetch('api.php?action=utilisateurs')
+                .then(response => response.json())
+                .then(data => {
+                    const listeUtilisateurs = document.getElementById('liste-utilisateurs');
+                    listeUtilisateurs.innerHTML = ""; // Vide la liste avant de la remplir
+                    if (data.error) {
+                        listeUtilisateurs.innerHTML = `<li>${data.error}</li>`;
+                    } else if (data.message) {
+                        listeUtilisateurs.innerHTML = `<li>${data.message}</li>`;
+                    } else {
+                        data.forEach(utilisateur => {
+                            const li = document.createElement('li');
+                            li.textContent = `<span class="math-inline">\{utilisateur\.nom\} \(</span>{utilisateur.email})`;
+                            listeUtilisateurs.appendChild(li);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Erreur lors de la requête :', error);
+                    const listeUtilisateurs = document.getElementById('liste-utilisateurs');
+                    listeUtilisateurs.innerHTML = `<li>Erreur lors de la requête</li>`;
+                });
+        }
+
+        // Chargement initial des utilisateurs
+        chargerUtilisateurs();
+
+        // Gestion du formulaire
+        const formUtilisateur = document.getElementById('form-utilisateur');
+        formUtilisateur.addEventListener('submit', function(event) {
+            event.preventDefault(); // Empêche le rechargement de la page
+
+            const nom = document.getElementById('nom').value;
+            const email = document.getElementById('email').value;
+
+            const formData = new FormData();
+            formData.append('action', 'ajouterUtilisateur');
+            formData.append('nom', nom);
+            formData.append('email', email);
+
+            fetch('api.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    alert(data.message); // Affiche un message de succès
+                    formUtilisateur.reset(); // Réinitialise le formulaire
+                    chargerUtilisateurs(); // Recharge la liste des utilisateurs
+                } else if (data.error) {
+                    alert(data.error); // Affiche un message d'erreur
+                }
+            })
+            .catch(error => {
+                console.error('Erreur lors de l'envoi du formulaire :', error);
+                alert("Erreur lors de l'envoi du formulaire.");
+            });
+        });
+    </script>
+</body>
+</html>
