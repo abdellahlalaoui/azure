@@ -36,7 +36,7 @@ jobs:
         uses: Azure/static-web-apps-deploy@v1
         with:
           # Remove unnecessary environment variable
-         SKIP_DEPLOY_ON_MISSING_SECRETS: true  # Not recommended
+        # SKIP_DEPLOY_ON_MISSING_SECRETS: true  # Not recommended
 
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
