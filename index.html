@@ -20,6 +20,13 @@
     <ul id="liste-utilisateurs"></ul>
 
     <script>
+
+        fetch('http://10.0.3.4/api.php?action=utilisateurs')
+.then(response => response.json()) // Ajout des parenthèses ici
+.then(data => {
+    // Traitement des données
+    console.log(data);
+});
         // Fonction pour charger les utilisateurs
         function chargerUtilisateurs() {
             fetch('http://10.0.3.4/api.php?action=utilisateurs')
