@@ -21,14 +21,16 @@
 
     <script>
 
+
+        // Fonction pour charger les utilisateurs
+        function chargerUtilisateurs() {
         fetch('http://10.0.3.4/api.php?action=utilisateurs')
 .then(response => response.json()) // Ajout des parenthèses ici
 .then(data => {
     // Traitement des données
     console.log(data);
 });
-        // Fonction pour charger les utilisateurs
-        function chargerUtilisateurs() {
+            /*
             fetch('http://10.0.3.4/api.php?action=utilisateurs')
                 .then(response => response.json())
                 .then(data => {
@@ -50,7 +52,7 @@
                     console.error('Erreur lors de la requête :', error);
                     const listeUtilisateurs = document.getElementById('liste-utilisateurs');
                     listeUtilisateurs.innerHTML = `<li>Erreur lors de la requête</li>`;
-                });
+                });*/
         }
 
         // Chargement initial des utilisateurs
