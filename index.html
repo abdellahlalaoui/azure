@@ -24,35 +24,29 @@
 
         // Fonction pour charger les utilisateurs
         function chargerUtilisateurs() {
-        fetch('http://10.0.3.4/api.php?action=utilisateurs')
-.then(response => response.json()) // Ajout des parenthèses ici
-.then(data => {
-    // Traitement des données
-    console.log(data);
-});
-            /*
+
             fetch('http://10.0.3.4/api.php?action=utilisateurs')
                 .then(response => response.json())
                 .then(data => {
                     const listeUtilisateurs = document.getElementById('liste-utilisateurs');
-                    listeUtilisateurs.innerHTML = ""; // Vide la liste avant de la remplir
+                    listeUtilisateurs.innerHTML = ""; 
                     if (data.error) {
-                        listeUtilisateurs.innerHTML = `<li>${data.error}</li>`;
+                        listeUtilisateurs.innerHTML = '<li>${data.error}</li>';
                     } else if (data.message) {
-                        listeUtilisateurs.innerHTML = `<li>${data.message}</li>`;
+                        listeUtilisateurs.innerHTML = '<li>${data.message}</li>';
                     } else {
                         data.forEach(utilisateur => {
                             const li = document.createElement('li');
-                            li.textContent = `<span class="math-inline">\{utilisateur\.nom\} \(</span>{utilisateur.email})`;
+                            li.textContent = '<span class="math-inline">\{utilisateur\.nom\} \(</span>{utilisateur.email})';
                             listeUtilisateurs.appendChild(li);
                         });
                     }
-                })
+                 })
                 .catch(error => {
                     console.error('Erreur lors de la requête :', error);
                     const listeUtilisateurs = document.getElementById('liste-utilisateurs');
                     listeUtilisateurs.innerHTML = `<li>Erreur lors de la requête</li>`;
-                });*/
+                });
         }
 
         // Chargement initial des utilisateurs
