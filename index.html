@@ -37,7 +37,7 @@
                     } else {
                         data.forEach(utilisateur => {
                             const li = document.createElement('li');
-                            li.textContent = '<span class="math-inline">\{utilisateur\.nom\} \(</span>{utilisateur.email})';
+                            li.textContent = '<span class="math-inline">{utilisateur.nom} (</span>{utilisateur.email})';
                             listeUtilisateurs.appendChild(li);
                         });
                     }
